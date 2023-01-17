@@ -8,6 +8,7 @@ const FrameworkCard: FC<Types> = ({ title, icon, description, bgColor }) => {
   return (
     <Card
       sx={{
+        flex: 1,
         minWidth: 275,
         background: bgColor,
         color: "white",

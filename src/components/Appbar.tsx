@@ -6,6 +6,7 @@ import {
   Container,
   IconButton,
   Menu,
+  Link,
   MenuItem,
   Stack,
   Toolbar,
@@ -132,32 +133,30 @@ const Appbar = () => {
 
           {/* links */}
           <Stack
-            // direction={"row"}
-            spacing={1}
-            alignItems={"center"}
+            direction={"row"}
+            spacing={2}
+            // alignItems={"start"}
             sx={{
               flexGrow: 1,
               display: { xs: "none", sm: "none", md: "none", lg: "flex" },
-              flexDirection: "row",
             }}
           >
             {pages.map((page) => (
-              <Box>
-                <Button
-                  key={page}
-                  onClick={handleCloseNavMenu}
-                  sx={{
-                    my: 2,
-                    display: "block",
-                    alignSelf: "start",
-                    paddingX: 2,
-                    backgroundColor: grey[100],
-                    color: grey[900],
-                  }}
-                >
-                  {page}
-                </Button>
-              </Box>
+              <Button
+                key={page}
+                onClick={handleCloseNavMenu}
+                sx={{
+                  marginTop: 0,
+                  // my: 2,
+                  display: "block",
+                  alignSelf: "start",
+                  // paddingX: 2,
+                  backgroundColor: grey[100],
+                  color: grey[900],
+                }}
+              >
+                {page}
+              </Button>
             ))}
           </Stack>
           {/* login */}
