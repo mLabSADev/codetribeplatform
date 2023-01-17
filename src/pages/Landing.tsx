@@ -204,8 +204,9 @@ const Landing: FC<any> = () => {
       <Container
         id="aboutus"
         sx={{
-          // marginY: 15,
-          marginBottom: 30,
+          // marginY: 15,e
+          paddingTop: 15,
+          marginBottom: 15,
         }}
       >
         <Stack
@@ -257,7 +258,8 @@ const Landing: FC<any> = () => {
       <Container
         id="webinars"
         sx={{
-          marginBottom: 30,
+          paddingTop: 15,
+          marginBottom: 15,
         }}
       >
         <Stack
@@ -327,7 +329,8 @@ const Landing: FC<any> = () => {
       <Container
         id="frameworks"
         sx={{
-          marginBottom: 30,
+          paddingTop: 15,
+          marginBottom: 15,
         }}
       >
         <Stack marginBottom={5}>
@@ -380,7 +383,8 @@ const Landing: FC<any> = () => {
       <Container
         id="join"
         sx={{
-          marginBottom: 30,
+          paddingTop: 15,
+          marginBottom: 15,
         }}
       >
         <Stack marginBottom={5}>
@@ -424,7 +428,8 @@ const Landing: FC<any> = () => {
       <Container
         id="tribers"
         sx={{
-          marginBottom: 30,
+          paddingTop: 15,
+          marginBottom: 15,
         }}
       >
         <Stack marginBottom={5}>
@@ -471,9 +476,9 @@ const Landing: FC<any> = () => {
       </Container>
       {/* message */}
       <Container
-        
         sx={{
-          marginBottom: 30,
+          paddingTop: 15,
+          marginBottom: 15,
         }}
       >
         <Stack marginBottom={5}>
@@ -543,7 +548,7 @@ const Landing: FC<any> = () => {
       </Container>
       {/* contact us */}
       <Container
-      id="contact"
+        id="contact"
         sx={{
           marginBottom: 30,
         }}
