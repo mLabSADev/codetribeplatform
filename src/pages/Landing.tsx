@@ -26,13 +26,12 @@ import AdbIcon from "@mui/icons-material/Adb";
 import { StaticImage } from "gatsby-plugin-image";
 import { green, grey, blueGrey, blue } from "@mui/material/colors";
 import MenuIcon from "@mui/icons-material/Menu";
-import Groups2RoundedIcon from "@mui/icons-material/Groups2Rounded";
-import LanguageTwoToneIcon from "@mui/icons-material/LanguageTwoTone";
 import FacebookIcon from "@mui/icons-material/Facebook";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-import GitHubIcon from "@mui/icons-material/GitHub";
 import TwitterIcon from "@mui/icons-material/Twitter";
+import WebinarCard from "../components/WebinarCard";
+import FrameworkCard, { Types } from "../components/FrameworkCard";
+import CommentsCard from "../components/CommentsCard";
+import WalloffameCard from "../components/WalloffameCard";
 const CodeTribeIcon = createSvgIcon(
   <svg
     width="685"
@@ -241,6 +240,32 @@ const ButtonAppBar = () => {
   );
 };
 const Landing = () => {
+  const frameworks = [
+    {
+      title: "Ionic",
+      icon: "https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/ionic-icon.png",
+      description:
+        "An open source mobile toolkit for building high quality, cross-platform native and web app experiences. Move faster with a single code base, running everywhere with JavaScript and the Web.",
+      bgColor:
+        "linear-gradient(120deg, rgba(42,16,233,1) 0%, rgba(186,16,221,1) 100%)",
+    },
+    {
+      title: "Angular",
+      icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/2048px-Angular_full_color_logo.svg.png",
+      description:
+        "Angular is a TypeScript-based free and open-source web application framework led by the Angular Team at Google and by a community of individuals and corporations. Angular is a complete rewrite from the same team that built AngularJS.",
+      bgColor:
+        "linear-gradient(120deg, rgba(233,76,16,1) 0%, rgba(221,16,119,1) 100%)",
+    },
+    {
+      title: "ReactJs",
+      icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/2300px-React-icon.svg.png",
+      description:
+        "React is a free and open-source front-end JavaScript library for building user interfaces based on UI components. It is maintained by Meta and a community of individual developers and companies. React can be used as a base in the development of single-page or mobile applications.",
+      bgColor:
+        "linear-gradient(120deg, rgba(16,213,233,1) 0%, rgba(16,134,221,1) 100%)",
+    },
+  ];
   return (
     <Box>
       <ButtonAppBar />
@@ -390,65 +415,18 @@ const Landing = () => {
           >
             {Array.from(Array(10).keys()).map((item: number, i: number) => {
               return (
-                <Card sx={{ maxWidth: 340, minWidth: 340 }}>
-                  <CardMedia
-                    component="img"
-                    alt="green iguana"
-                    height="190"
-                    image="https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?s=612x612&w=0&k=20&c=A63koPKaCyIwQWOTFBRWXj_PwCrR4cEoOw2S9Q7yVl8="
-                  />
-                  <CardContent>
-                    <Typography
-                      textAlign={"start"}
-                      gutterBottom
-                      fontWeight={"bolder"}
-                      variant="h5"
-                    >
-                      Webinar - COBIT’s Value for Small and Medium Enterprises
-                    </Typography>
-                    <Stack
-                      direction={"row"}
-                      sx={{
-                        marginBottom: 3,
-                      }}
-                    >
-                      <Stack
-                        direction={"row"}
-                        spacing={2}
-                        flex={1}
-                        alignItems={"center"}
-                      >
-                        <Typography variant="subtitle1">by Unathi</Typography>
-                        <Typography variant="caption">Jun 15</Typography>
-                      </Stack>
-                      <Chip
-                        sx={{
-                          paddingX: 1,
-                        }}
-                        variant="outlined"
-                        icon={<Groups2RoundedIcon />}
-                        label="14k joining"
-                      />
-                    </Stack>
-                    <Typography
-                      textAlign={"start"}
-                      variant="body2"
-                      color="text.secondary"
-                      textOverflow={"ellipsis"}
-                      // maxHeight={20}
-                    >
-                      For small and medium enterprises (SMEs), information &
-                      technology (I&T) has become crucial for support,
-                      sustainability and growth.
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size="large" fullWidth>
-                      Login to watch
-                    </Button>
-                    {/* <Button size="large">Learn More</Button> */}
-                  </CardActions>
-                </Card>
+                <WebinarCard
+                  creator=""
+                  date=""
+                  description=""
+                  image=""
+                  joining={0}
+                  onClick={() => {
+                    return true;
+                  }}
+                  title=""
+                  key={item}
+                />
               );
             })}
           </Stack>
@@ -488,67 +466,22 @@ const Landing = () => {
             in a FREE 60-minute mlab webinar.
           </Typography>
         </Stack>
-        <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
-          <Card
-            sx={{
-              minWidth: 275,
-              background:
-                " linear-gradient(120deg, rgba(42,16,233,1) 0%, rgba(186,16,221,1) 100%)",
-              color: "white",
-            }}
-          >
-            <CardContent>
-              <Typography variant="h4" gutterBottom fontWeight={"bold"}>
-                Ionic
-              </Typography>
-              <Typography variant="body2">
-                An open source mobile toolkit for building high quality,
-                cross-platform native and web app experiences. Move faster with
-                a single code base, running everywhere with JavaScript and the
-                Web.
-              </Typography>
-            </CardContent>
-          </Card>
-          <Card
-            sx={{
-              minWidth: 275,
-              background:
-                "linear-gradient(120deg, rgba(233,76,16,1) 0%, rgba(221,16,119,1) 100%)",
-              color: "white",
-            }}
-          >
-            <CardContent>
-              <Typography variant="h4" gutterBottom fontWeight={"bold"}>
-                Angular
-              </Typography>
-              <Typography variant="body2">
-                An open source mobile toolkit for building high quality,
-                cross-platform native and web app experiences. Move faster with
-                a single code base, running everywhere with JavaScript and the
-                Web.
-              </Typography>
-            </CardContent>
-          </Card>
-          <Card
-            sx={{
-              minWidth: 275,
-              background:
-                "linear-gradient(120deg, rgba(16,213,233,1) 0%, rgba(16,134,221,1) 100%)",
-              color: "white",
-            }}
-          >
-            <CardContent>
-              <Typography variant="h4" gutterBottom fontWeight={"bold"}>
-                ReactJs
-              </Typography>
-              <Typography variant="body2">
-                An open source mobile toolkit for building high quality,
-                cross-platform native and web app experiences. Move faster with
-                a single code base, running everywhere with JavaScript and the
-                Web.
-              </Typography>
-            </CardContent>
-          </Card>
+        <Stack
+          justifyContent={"space-evenly"}
+          direction={{ xs: "column", md: "row" }}
+          spacing={1}
+        >
+          {frameworks.map((item: Types, i: number) => {
+            return (
+              <FrameworkCard
+                key={i}
+                title={item.title}
+                icon={item.icon}
+                description={item.description}
+                bgColor={item.bgColor}
+              />
+            );
+          })}
         </Stack>
       </Container>
       {/* join our tribe */}
@@ -562,14 +495,13 @@ const Landing = () => {
             margin={"auto"}
             padding={3}
             sx={{
-              //   backgroundColor: "red",
               alignSelf: "start",
             }}
           >
             <Typography
               textAlign={"center"}
               display={"flex"}
-              // gap={1}
+              gap={1}
               fontWeight={"bold"}
               variant="h4"
             >
@@ -582,61 +514,13 @@ const Landing = () => {
           <Stack direction={{ xs: "column", md: "row" }} spacing={2}>
             {Array.from(Array(3).keys()).map((item: number) => {
               return (
-                <Card variant="outlined">
-                  <CardContent>
-                    <Stack
-                      sx={{
-                        padding: 2,
-                        borderWidth: 1,
-                        borderColor: "grey",
-                      }}
-                      spacing={3}
-                    >
-                      <Stack direction={"row"} spacing={2}>
-                        <Stack
-                          alignItems={"center"}
-                          // padding={2}
-                          overflow={"hidden"}
-                        >
-                          <Box flex={1}>
-                            <Divider orientation="vertical" />
-                          </Box>
-
-                          <IconButton disabled>
-                            <LanguageTwoToneIcon />
-                          </IconButton>
-                          <Box flex={1}>
-                            <Divider orientation="vertical" />
-                          </Box>
-                        </Stack>
-                        <Stack flex={1}>
-                          <Typography>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit. Praesent accumsan commodo fermentum. Fusce
-                            ultricies eros non quam venenatis, nec pulvinar
-                            augue efficitur. Phasellus lacus augue, tincidunt et
-                            lacus non, consequat congue nunc.
-                          </Typography>
-                        </Stack>
-                      </Stack>
-                      <Stack
-                        direction={"row"}
-                        alignItems={"center"}
-                        spacing={2}
-                      >
-                        <Avatar src="https://images.unsplash.com/photo-1597223557154-721c1cecc4b0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8ZmFjZXN8ZW58MHx8MHx8&w=1000&q=80" />
-                        <Stack>
-                          <Typography variant="subtitle1" fontWeight={"bold"}>
-                            Jane Doe
-                          </Typography>
-                          <Typography variant="caption">
-                            Front-end Developer
-                          </Typography>
-                        </Stack>
-                      </Stack>
-                    </Stack>
-                  </CardContent>
-                </Card>
+                <CommentsCard
+                  key={item}
+                  name=""
+                  picture=""
+                  profession=""
+                  text=""
+                />
               );
             })}
           </Stack>
@@ -679,104 +563,13 @@ const Landing = () => {
           >
             {Array.from(Array(3).keys()).map((item: number) => {
               return (
-                <Stack
-                  sx={{
-                    borderRadius: 5,
-                    overflow: "hidden",
-                    height: 600,
-                    width: 380,
-                    // backgroundColor: "tomato",
-                  }}
-                >
-                  <Stack flex={1} sx={{ position: "relative" }}>
-                    <Box
-                      sx={{
-                        width: "100%",
-                        height: "100%",
-                        position: "absolute",
-                      }}
-                      flex={1}
-                    >
-                      <img
-                        // width={"100%"}
-                        // layout="fullWidth"
-                        loading="lazy"
-                        height={"100%"}
-                        src="https://media.istockphoto.com/id/1354524757/photo/casual-african-american-woman-smiling-in-purple-studio-isolated-background.jpg?s=170667a&w=0&k=20&c=OcXcn_MnMFCiX4Zms00WdJDJFQxYIJ4IWtWiqwrMwLs="
-                        alt="person bg"
-                      />
-                    </Box>
-                    <Stack
-                      sx={{
-                        position: "absolute",
-                        bottom: 0,
-                        left: 0,
-                        padding: 2,
-                      }}
-                      spacing={3}
-                    >
-                      <GitHubIcon />
-                      <WhatsAppIcon />
-                      <LinkedInIcon />
-                      <FacebookIcon />
-                    </Stack>
-                    <Stack
-                      sx={{
-                        zIndex: 2,
-                        padding: 4,
-                      }}
-                      // spacing={1}
-                    >
-                      <Typography variant="h4" fontWeight={"bold"}>
-                        Jane Doe
-                      </Typography>
-                      <Stack
-                        direction={"row"}
-                        spacing={1}
-                        alignItems={"center"}
-                      >
-                        <Divider sx={{ width: 20 }} />
-                        <Typography>UI/UX designer</Typography>
-                      </Stack>
-                    </Stack>
-                  </Stack>
-                  <Stack
-                    // height={90}
-                    direction={"row"}
-                    alignItems={"center"}
-                    justifyContent={"space-evenly"}
-                    padding={2}
-                    sx={{
-                      backgroundColor: blueGrey[900],
-                    }}
-                  >
-                    <Avatar
-                      alt="Remy Sharp"
-                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/2048px-Angular_full_color_logo.svg.png"
-                      sx={{ width: 40, height: 40 }}
-                    />
-                    <Avatar
-                      alt="Remy Sharp"
-                      src="https://ionicacademy.com/wp-content/uploads/2020/02/ionic-Logo.svg"
-                      sx={{ width: 40, height: 40 }}
-                    />
-                    <Avatar
-                      alt="Remy Sharp"
-                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/2300px-React-icon.svg.png"
-                      sx={{ width: 40, height: 40 }}
-                    />
-                    <Avatar
-                      alt="Remy Sharp"
-                      src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582748_960_720.png"
-                      sx={{ width: 40, height: 40 }}
-                    />
-                    <Avatar
-                      alt="Remy Sharp"
-                      src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747_1280.png"
-                      sx={{ width: 40, height: 40 }}
-                    />
-                  </Stack>
-                </Stack>
+                <WalloffameCard
+                  image=""
+                  name=""
+                  position=""
+                  skills={[{ icon: "" }]}
+                  socials={[{ link: "", socialName: "" }]}
+                />
               );
             })}
           </Stack>
@@ -853,6 +646,7 @@ const Landing = () => {
           </Stack>
         </Stack>
       </Container>
+      {/* contact us */}
       <Container
         sx={{
           marginBottom: 30,
@@ -897,7 +691,7 @@ const Landing = () => {
               label="Message"
               variant="outlined"
             />
-            <Button>Send  💖</Button>
+            <Button>Send 💖</Button>
           </Stack>
           <Stack flex={1}>
             <Box
