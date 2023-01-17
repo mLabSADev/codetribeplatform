@@ -22,12 +22,15 @@ const Appbar = () => {
     null
   );
   const pages = [
-    "About Us",
-    "Our Webinars",
-    "Frameworks",
-    "Join Us",
-    "Tribers",
-    "Contact Us",
+    {
+      label: "About Us",
+      link: "#aboutus",
+    },
+    { label: "Our Webinars", link: "#webinars" },
+    { label: "Frameworks", link: "#frameworks" },
+    { label: "Join Us", link: "#join" },
+    { label: "Tribers", link: "#tribers" },
+    { label: "Contact Us", link: "#contact" },
   ];
 
   const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -104,9 +107,10 @@ const Appbar = () => {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+              {pages.map((page: PageLinkTypes, i: number) => (
+                <MenuItem key={i} onClick={handleCloseNavMenu}>
+                  <Link href={page.link}>{page.label}</Link>
+                  {/* <Typography textAlign="center">{page.label}</Typography> */}
                 </MenuItem>
               ))}
             </Menu>
@@ -141,21 +145,30 @@ const Appbar = () => {
               display: { xs: "none", sm: "none", md: "none", lg: "flex" },
             }}
           >
-            {pages.map((page) => (
+            {pages.map((page: PageLinkTypes, i: number) => (
               <Button
-                key={page}
+                key={i}
                 onClick={handleCloseNavMenu}
                 sx={{
                   marginTop: 0,
                   // my: 2,
                   display: "block",
                   alignSelf: "start",
-                  // paddingX: 2,
+                  paddingX: 2,
+
                   backgroundColor: grey[100],
                   color: grey[900],
                 }}
               >
-                {page}
+                <Link
+                  sx={{
+                    textDecoration: "none",
+                    color: "inherit",
+                  }}
+                  href={page.link}
+                >
+                  {page.label}
+                </Link>
               </Button>
             ))}
           </Stack>
@@ -192,3 +205,7 @@ const Appbar = () => {
 };
 
 export default Appbar;
+export interface PageLinkTypes {
+  label: string;
+  link: string;
+}

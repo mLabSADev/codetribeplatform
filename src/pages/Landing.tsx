@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import {
   Box,
   Toolbar,
@@ -63,7 +63,8 @@ const CodeTribeIcon = createSvgIcon(
 );
 
 const ButtonAppBar = () => {};
-const Landing = () => {
+
+const Landing: FC<any> = () => {
   const frameworks = [
     {
       title: "Ionic",
@@ -201,7 +202,9 @@ const Landing = () => {
       </Stack>
       {/* About us */}
       <Container
+        id="aboutus"
         sx={{
+          // marginY: 15,
           marginBottom: 30,
         }}
       >
@@ -226,7 +229,7 @@ const Landing = () => {
               fontWeight={"bold"}
               variant="h4"
             >
-              About{" "}
+              About
               <Typography textAlign={"center"} variant="h4">
                 Us
               </Typography>
@@ -252,6 +255,7 @@ const Landing = () => {
       </Container>
       {/* webinar */}
       <Container
+        id="webinars"
         sx={{
           marginBottom: 30,
         }}
@@ -321,6 +325,7 @@ const Landing = () => {
       </Container>
       {/* frameworks */}
       <Container
+        id="frameworks"
         sx={{
           marginBottom: 30,
         }}
@@ -373,6 +378,7 @@ const Landing = () => {
       </Container>
       {/* join our tribe */}
       <Container
+        id="join"
         sx={{
           marginBottom: 30,
         }}
@@ -416,6 +422,7 @@ const Landing = () => {
 
       {/* wall of fame */}
       <Container
+        id="tribers"
         sx={{
           marginBottom: 30,
         }}
@@ -464,6 +471,7 @@ const Landing = () => {
       </Container>
       {/* message */}
       <Container
+        
         sx={{
           marginBottom: 30,
         }}
@@ -535,6 +543,7 @@ const Landing = () => {
       </Container>
       {/* contact us */}
       <Container
+      id="contact"
         sx={{
           marginBottom: 30,
         }}
