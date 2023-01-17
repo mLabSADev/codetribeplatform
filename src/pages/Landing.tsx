@@ -1,6 +1,5 @@
 import React, { FC } from "react";
 import {
-  AppBar,
   Box,
   Toolbar,
   Typography,
@@ -25,13 +24,14 @@ import { createSvgIcon } from "@mui/material/utils";
 import AdbIcon from "@mui/icons-material/Adb";
 import { StaticImage } from "gatsby-plugin-image";
 import { green, grey, blueGrey, blue } from "@mui/material/colors";
-import MenuIcon from "@mui/icons-material/Menu";
+
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import WebinarCard from "../components/WebinarCard";
 import FrameworkCard, { Types } from "../components/FrameworkCard";
 import CommentsCard from "../components/CommentsCard";
 import WalloffameCard from "../components/WalloffameCard";
+import Appbar from "../components/Appbar";
 const CodeTribeIcon = createSvgIcon(
   <svg
     width="685"
@@ -62,183 +62,7 @@ const CodeTribeIcon = createSvgIcon(
   "Home"
 );
 
-const ButtonAppBar = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
-    null
-  );
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
-    null
-  );
-  const pages = [
-    "About Us",
-    "Our Webinars",
-    "Frameworks",
-    "Join Us",
-    "Tribers",
-    "Contact Us",
-  ];
-  const settings = ["Profile", "Account", "Dashboard", "Logout"];
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
-  return (
-    // App bar
-    <AppBar position="static">
-      {/* container */}
-      <Container maxWidth="xl">
-        {/* toolbar */}
-        <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: "none", lg: "flex" },
-              //   fontFamily: "monospace",
-              fontWeight: 700,
-              //   letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            CodeTribe
-          </Typography>
-          {/* side menu */}
-          <Box
-            sx={{
-              flexGrow: 1,
-              display: { xs: "flex", sm: "flex", lg: "none" },
-            }}
-          >
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: "block", md: "none" },
-              }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-          {/* middle logo */}
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
-            sx={{
-              mr: 2,
-              display: { sm: "flex", lg: "none" },
-              flexGrow: 1,
-              //   fontFamily: "monospace",
-              fontWeight: 700,
-              //   letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            CodeTribe
-          </Typography>
-
-          {/* links */}
-          <Stack
-            // direction={"row"}
-            spacing={1}
-            alignItems={"center"}
-            sx={{
-              flexGrow: 1,
-              display: { xs: "none", sm: "none", md: "none", lg: "flex" },
-              flexDirection: "row",
-            }}
-          >
-            {pages.map((page) => (
-              <Box>
-                <Button
-                  key={page}
-                  onClick={handleCloseNavMenu}
-                  sx={{
-                    my: 2,
-                    display: "block",
-                    alignSelf: "start",
-                    paddingX: 2,
-                    backgroundColor: grey[100],
-                    color: grey[900],
-                  }}
-                >
-                  {page}
-                </Button>
-              </Box>
-            ))}
-          </Stack>
-          {/* login */}
-          <Box sx={{ flexGrow: 0 }}>
-            <Button variant="contained">Login</Button>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-        </Toolbar>
-      </Container>
-    </AppBar>
-  );
-};
+const ButtonAppBar = () => {};
 const Landing = () => {
   const frameworks = [
     {
@@ -266,9 +90,41 @@ const Landing = () => {
         "linear-gradient(120deg, rgba(16,213,233,1) 0%, rgba(16,134,221,1) 100%)",
     },
   ];
+  const technologies = [
+    {
+      icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/2300px-React-icon.svg.png",
+      label: "ReactJS",
+      link: "",
+    },
+    {
+      icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/2048px-Angular_full_color_logo.svg.png",
+      label: "Angular",
+      link: "",
+    },
+    {
+      icon: "https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg",
+      label: "Github",
+      link: "",
+    },
+    {
+      icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/HTML5_Badge.svg/1200px-HTML5_Badge.svg.png",
+      label: "HTML5",
+      link: "",
+    },
+    {
+      icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/CSS3_logo_and_wordmark.svg/1200px-CSS3_logo_and_wordmark.svg.png",
+      label: "CSS3",
+      link: "",
+    },
+    {
+      icon: "https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/ionic-icon.png",
+      label: "Ionic",
+      link: "",
+    },
+  ];
   return (
     <Box>
-      <ButtonAppBar />
+      <Appbar />
       {/* landing */}
       <Stack
         sx={{
@@ -310,7 +166,38 @@ const Landing = () => {
             <Button sx={{ alignSelf: "start", paddingX: 3 }}>Login</Button>
           </Stack>
         </Stack>
-        <Stack></Stack>
+        <Grid
+          container
+          flex={1}
+          // direction={{ xs: "column", sm: "row" }}
+          justifyContent={{ xs: "space-evenly", sm: "flex-end" }}
+          spacing={2}
+          padding={3}
+          alignItems="center"
+        >
+          {technologies.map((item: TechTypes, i) => {
+            return (
+              <Grid item>
+                <Tooltip title={item.label}>
+                  <Stack
+                    padding={2}
+                    direction={"row"}
+                    spacing={2}
+                    justifyContent={"end"}
+                    alignItems="center"
+                  >
+                    <img
+                      style={{ width: 30, height: 30, objectFit: "contain" }}
+                      src={item.icon}
+                      alt={item.label}
+                    />
+                    <Typography>{item.label}</Typography>
+                  </Stack>
+                </Tooltip>
+              </Grid>
+            );
+          })}
+        </Grid>
       </Stack>
       {/* About us */}
       <Container
@@ -710,3 +597,8 @@ const Landing = () => {
 };
 
 export default Landing;
+export interface TechTypes {
+  icon: string;
+  label: string;
+  link: string;
+}
