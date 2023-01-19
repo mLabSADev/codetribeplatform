@@ -19,6 +19,7 @@ import {
   Grid,
   Divider,
   TextField,
+  Slide,
 } from "@mui/material";
 import { createSvgIcon } from "@mui/material/utils";
 import AdbIcon from "@mui/icons-material/Adb";
@@ -32,6 +33,10 @@ import FrameworkCard, { Types } from "../components/FrameworkCard";
 import CommentsCard from "../components/CommentsCard";
 import WalloffameCard from "../components/WalloffameCard";
 import Appbar from "../components/Appbar";
+import type { RootState } from "../redux/store";
+import { useSelector, useDispatch } from "react-redux";
+import { loaded } from "../redux/loader/loaderSlice";
+import { AnimatePresence, motion } from "framer-motion";
 const CodeTribeIcon = createSvgIcon(
   <svg
     width="685"
@@ -65,6 +70,18 @@ const CodeTribeIcon = createSvgIcon(
 const ButtonAppBar = () => {};
 
 const Landing: FC<any> = () => {
+  const loadedState = useSelector(
+    (state: RootState) => state.loaderReducer.loaded
+  );
+  const dispatch = useDispatch();
+  const variantTop = {
+    open: { opacity: 1, y: 0 },
+    closed: { opacity: 0, y: "-100%" },
+  };
+  const variantBottom = {
+    open: { opacity: 1, y: 0 },
+    closed: { opacity: 0, y: "100%" },
+  };
   const frameworks = [
     {
       title: "Ionic",
@@ -129,6 +146,46 @@ const Landing: FC<any> = () => {
         overflow: "hidden",
       }}
     >
+      <AnimatePresence>
+        <motion.div
+          style={{
+            width: "100%",
+            height: "50%",
+            position: "absolute",
+            zIndex: 10,
+            left: 0,
+            top: 0,
+            background: "white",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            overflow: "visible",
+          }}
+          animate={loadedState ? "closed" : "open"}
+          transition={{ duration: 1 }}
+          variants={variantTop}
+        >
+          <span className="loader"></span>
+        </motion.div>
+        <motion.div
+          style={{
+            width: "100%",
+            height: "50%",
+            position: "absolute",
+            zIndex: 9,
+            left: 0,
+            bottom: 0,
+            background: "white",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+          animate={loadedState ? "closed" : "open"}
+          transition={{ duration: 1 }}
+          variants={variantBottom}
+        ></motion.div>
+      </AnimatePresence>
+
       <Box
         sx={{
           position: "absolute",
@@ -172,6 +229,9 @@ const Landing: FC<any> = () => {
             flex={1}
           >
             <iframe
+              onLoad={() => {
+                dispatch(loaded(true));
+              }}
               style={{
                 borderWidth: 0,
                 height: 700,
@@ -193,8 +253,29 @@ const Landing: FC<any> = () => {
                 display: { xs: "none", sm: "block" },
               }}
             >
-              <Typography fontWeight={"bold"} variant={"h2"}>
-                Learn how to build Android & iOS Apps
+              <Typography
+                gap={2}
+                sx={{ display: "flex", flexWrap: "wrap" }}
+                fontWeight={"bold"}
+                variant={"h2"}
+              >
+                Learn how to build
+                <Typography
+                  color={green[600]}
+                  fontWeight={"bold"}
+                  variant={"h2"}
+                >
+                  Android
+                </Typography>
+                &{" "}
+                <Typography
+                  color={grey[800]}
+                  fontWeight={"bold"}
+                  variant={"h2"}
+                >
+                  iOS
+                </Typography>{" "}
+                Apps
               </Typography>
             </Box>
             <Box
@@ -206,11 +287,13 @@ const Landing: FC<any> = () => {
                 Learn how to build Android & iOS Apps
               </Typography>
             </Box>
-            <Typography>
+            <Typography variant="h6">
               We have an amazing team that is willing to train, guide and mentor
               you on your journey.
             </Typography>
-            <Button sx={{ alignSelf: "start", paddingX: 3 }}>Login</Button>
+            <Button size="large" sx={{ alignSelf: "start", paddingX: 3 }}>
+              <Typography>Login</Typography>
+            </Button>
           </Stack>
         </Stack>
         <Grid
