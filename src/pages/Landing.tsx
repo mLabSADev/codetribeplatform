@@ -124,22 +124,68 @@ const Landing: FC<any> = () => {
     },
   ];
   return (
-    <Box>
+    <Box
+      sx={{
+        overflow: "hidden",
+      }}
+    >
+      <Box
+        sx={{
+          position: "absolute",
+          zIndex: -1,
+          filter: "blur(44px)",
+          right: 0,
+          width: 600,
+          height: 600,
+          borderRadius: "50%",
+          background:
+            "linear-gradient(120deg, rgba(178,255,230,1) 0%, rgba(191,228,255,1) 100%)",
+        }}
+      ></Box>
+      <Box
+        sx={{
+          position: "absolute",
+          zIndex: -1,
+          filter: "blur(80px)",
+          left: 0,
+          bottom: 0,
+          width: 600,
+          height: 600,
+          borderRadius: "50%",
+          background:
+            "linear-gradient(120deg, rgba(255,222,178,1) 0%, rgba(255,191,238,1) 100%)",
+        }}
+      ></Box>
       <Appbar />
       {/* landing */}
       <Stack
         sx={{
           marginTop: 10,
-          marginBottom: 30,
+          // marginBottom: 30,
         }}
       >
         <Stack flex={1} direction={{ sm: "column", md: "row" }}>
-          <Stack flex={1}>
-            <StaticImage
+          <Stack
+            sx={{
+              width: "100%",
+            }}
+            flex={1}
+          >
+            <iframe
+              style={{
+                borderWidth: 0,
+                height: 700,
+              }}
+              src="https://my.spline.design/hands3duicopy-5add52522534585e8568432719828a37/"
+              // frameBorder="0"
+              width="100%"
+              height="100%"
+            ></iframe>
+            {/* <StaticImage
               layout="constrained"
               src="../assets/login-illustration.png"
               alt="Developer"
-            />
+            /> */}
           </Stack>
           <Stack spacing={3} padding={5} flex={1} justifyContent={"center"}>
             <Box
@@ -156,7 +202,7 @@ const Landing: FC<any> = () => {
                 display: { xs: "block", sm: "none" },
               }}
             >
-              <Typography fontWeight={"bold"} variant={"h3"}>
+              <Typography fontWeight={"bold"} variant={"h4"}>
                 Learn how to build Android & iOS Apps
               </Typography>
             </Box>

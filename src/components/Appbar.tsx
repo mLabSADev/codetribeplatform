@@ -104,12 +104,20 @@ const Appbar = () => {
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: "block", md: "none" },
+                display: { xs: "block", lg: "none" },
               }}
             >
               {pages.map((page: PageLinkTypes, i: number) => (
                 <MenuItem key={i} onClick={handleCloseNavMenu}>
-                  <Link href={page.link}>{page.label}</Link>
+                  <Link
+                    sx={{
+                      textDecoration: "none",
+                      color: "inherit",
+                    }}
+                    href={page.link}
+                  >
+                    {page.label}
+                  </Link>
                   {/* <Typography textAlign="center">{page.label}</Typography> */}
                 </MenuItem>
               ))}

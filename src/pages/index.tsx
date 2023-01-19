@@ -8,8 +8,12 @@ import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
 
 import { theme } from "../components/Theme";
 const IndexPage: React.FC<PageProps> = () => {
+  
   return (
     <Box
+      onScroll={() => {
+        console.log("ttt");
+      }}
       flex={1}
       sx={{
         flex: 1,

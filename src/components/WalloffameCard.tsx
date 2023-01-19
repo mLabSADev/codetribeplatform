@@ -34,11 +34,13 @@ const WalloffameCard: FC<WallofFameTypes> = () => {
           flex={1}
         >
           <img
-            // width={"100%"}
-            // layout="fullWidth"
+            style={{
+              objectFit: "cover",
+            }}
             loading="lazy"
             height={"100%"}
-            src="https://media.istockphoto.com/id/1354524757/photo/casual-african-american-woman-smiling-in-purple-studio-isolated-background.jpg?s=170667a&w=0&k=20&c=OcXcn_MnMFCiX4Zms00WdJDJFQxYIJ4IWtWiqwrMwLs="
+            width={"100%"}
+            src="https://images.unsplash.com/photo-1560787313-5dff3307e257?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
             alt="person bg"
           />
         </Box>
@@ -48,6 +50,7 @@ const WalloffameCard: FC<WallofFameTypes> = () => {
             bottom: 0,
             left: 0,
             padding: 2,
+            backdropFilter: "blur(5px)",
           }}
           spacing={3}
         >
@@ -71,6 +74,7 @@ const WalloffameCard: FC<WallofFameTypes> = () => {
           sx={{
             zIndex: 2,
             padding: 4,
+            color: "grey",
           }}
           // spacing={1}
         >

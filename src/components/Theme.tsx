@@ -1,5 +1,5 @@
 import { createTheme } from "@mui/material/styles";
-import { green, } from "@mui/material/colors";
+import { green } from "@mui/material/colors";
 export const theme = createTheme({
   palette: {
     mode: "light",
@@ -17,6 +17,13 @@ export const theme = createTheme({
     },
   },
   components: {
+    MuiTypography: {
+      styleOverrides: {
+        root: {
+          fontFamily: "Plus Jakarta Sans",
+        },
+      },
+    },
     MuiAppBar: {
       styleOverrides: {
         root: {
