@@ -123,6 +123,26 @@ const Landing: FC<any> = () => {
       link: "",
     },
   ];
+  const locations = [
+    {
+      title: "Gauteng",
+      text: "mLab Tshwane is a proud partnership between mLab, The Innovation Hub and The Department of Science and Innovation and represents the first mLab launched in South Africa in 2012 through the support of the current partners and the CSIR, the World Bank and the Finnish Ministry of Foreign Affairs.",
+      embed:
+        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d114997.20989146426!2d28.197091369370757!3d-25.748662148943744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e9560451d408f9d%3A0xb180e978338dcefd!2smLab%20Southern%20Africa!5e0!3m2!1sen!2sza!4v1620139798484!5m2!1sen!2sza",
+    },
+    {
+      title: "Limpopo",
+      text: "mLab Limpopo is a proud partnership between mLab, Limpopo Connexion and The Department of Science and Innovation.",
+      embed:
+        "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14588.935269198646!2d29.4577354!3d-23.9167731!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xef213f659d800228!2smLab%20Limpopo!5e0!3m2!1sen!2sza!4v1620139900698!5m2!1sen!2sza",
+    },
+    {
+      title: "Nothern Cape",
+      text: "mLab Northern Cape is a proud partnership between mLab, the Northern Cape Department of Economic Development and Tourism, Sol Plaatje Municipality, Northern Cape Community Education College, and The Department of Science and Innovation.",
+      embed:
+        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3499.125139080748!2d24.732460215084554!3d-28.715805982385096!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e9b1b9d748ff481%3A0xe2e2e913dbcc1c73!2sGaleshewe%20SMME%20Village!5e0!3m2!1sen!2sza!4v1621582875915!5m2!1sen!2sza",
+    },
+  ];
   return (
     <Box>
       <Appbar />
@@ -581,28 +601,99 @@ const Landing: FC<any> = () => {
             <Typography textAlign={"center"} variant="h6">
               Send us a message
             </Typography>
-
-            <TextField id="outlined-basic" label="Email" variant="outlined" />
-            <TextField id="outlined-basic" label="Subject" variant="outlined" />
-            <TextField
-              multiline
-              maxRows={8}
-              rows={4}
-              id="outlined-basic"
-              label="Message"
-              variant="outlined"
-            />
-            <Button>Send 💖</Button>
+            <form name="contact" netlify>
+              <Stack flex={1} spacing={2}>
+                <TextField
+                  name="email"
+                  id="outlined-basic"
+                  label="Email"
+                  variant="outlined"
+                />
+                <TextField
+                  name="subject"
+                  id="outlined-basic"
+                  label="Subject"
+                  variant="outlined"
+                />
+                <TextField
+                  name="message"
+                  multiline
+                  maxRows={8}
+                  rows={4}
+                  id="outlined-basic"
+                  label="Message"
+                  variant="outlined"
+                />
+                <Button type="submit">Send 💖</Button>
+              </Stack>
+            </form>
           </Stack>
           <Stack flex={1}>
             <Box
               sx={{
                 width: "100%",
                 height: { xs: 400, md: "100%" },
-                background: "tomato",
                 borderRadius: 5,
+                overflow: "hidden",
               }}
-            ></Box>
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                  flex: 1,
+                  width: "100%",
+                  // height: "100%",
+                }}
+              >
+                <iframe
+                  title="location-map"
+                  className="landingMap"
+                  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14588.935269198646!2d29.4577354!3d-23.9167731!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xef213f659d800228!2smLab%20Limpopo!5e0!3m2!1sen!2sza!4v1620139900698!5m2!1sen!2sza"
+                  width="100%"
+                  height="100%"
+                  loading="lazy"
+                ></iframe>
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-evenly",
+                  padding: 2,
+                  gap: 2,
+                }}
+              >
+                {locations.map((item) => {})}
+                <Box>
+                  <Typography variant="h6">Limpopo</Typography>
+                  <Typography variant="caption">
+                    mLab Limpopo is a proud partnership between mLab, Limpopo
+                    Connexion and The Department of Science and Innovation.
+                  </Typography>
+                </Box>
+                <Box>
+                  <Typography variant="h6">Gauteng</Typography>
+                  <Typography variant="caption">
+                    mLab Tshwane is a proud partnership between mLab, The
+                    Innovation Hub and The Department of Science and Innovation
+                    and represents the first mLab launched in South Africa in
+                    2012 through the support of the current partners and the
+                    CSIR, the World Bank and the Finnish Ministry of Foreign
+                    Affairs.
+                  </Typography>
+                </Box>
+                <Box>
+                  <Typography variant="h6">Nothern Cape</Typography>
+                  <Typography variant="caption">
+                    mLab Northern Cape is a proud partnership between mLab, the
+                    Northern Cape Department of Economic Development and
+                    Tourism, Sol Plaatje Municipality, Northern Cape Community
+                    Education College, and The Department of Science and
+                    Innovation.
+                  </Typography>
+                </Box>
+              </Box>
+            </Box>
           </Stack>
         </Stack>
       </Container>
