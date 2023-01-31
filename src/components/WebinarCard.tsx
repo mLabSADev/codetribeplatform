@@ -35,8 +35,16 @@ const WebinarCard: FC<WebinarTypes> = () => {
             marginBottom: 3,
           }}
         >
-          <Stack direction={"row"} spacing={2} flex={1} alignItems={"center"}>
-            <Typography variant="subtitle1">by Unathi</Typography>
+          <Stack
+            color={"gray"}
+            direction={"row"}
+            spacing={2}
+            flex={1}
+            alignItems={"center"}
+          >
+            <Typography variant="subtitle1" fontWeight={"700"}>
+              by Unathi
+            </Typography>
             <Typography variant="caption">Jun 15</Typography>
           </Stack>
           <Chip

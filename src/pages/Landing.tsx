@@ -78,14 +78,7 @@ const Landing: FC<any> = () => {
       bgColor:
         "linear-gradient(120deg, rgba(42,16,233,1) 0%, rgba(186,16,221,1) 100%)",
     },
-    {
-      title: "Angular",
-      icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/2048px-Angular_full_color_logo.svg.png",
-      description:
-        "Angular is a TypeScript-based free and open-source web application framework led by the Angular Team at Google and by a community of individuals and corporations. Angular is a complete rewrite from the same team that built AngularJS.",
-      bgColor:
-        "linear-gradient(120deg, rgba(233,76,16,1) 0%, rgba(221,16,119,1) 100%)",
-    },
+
     {
       title: "ReactJs",
       icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/2300px-React-icon.svg.png",
@@ -102,8 +95,8 @@ const Landing: FC<any> = () => {
       link: "",
     },
     {
-      icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/2048px-Angular_full_color_logo.svg.png",
-      label: "Angular",
+      icon: "https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/ionic-icon.png",
+      label: "Ionic",
       link: "",
     },
     {
@@ -119,11 +112,6 @@ const Landing: FC<any> = () => {
     {
       icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/CSS3_logo_and_wordmark.svg/1200px-CSS3_logo_and_wordmark.svg.png",
       label: "CSS3",
-      link: "",
-    },
-    {
-      icon: "https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/ionic-icon.png",
-      label: "Ionic",
       link: "",
     },
   ];
