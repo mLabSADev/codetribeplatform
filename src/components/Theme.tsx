@@ -25,6 +25,12 @@ export const theme = createTheme({
         h1: {
           fontWeight: 800,
         },
+        body1: {
+          // lineHeight: 2,
+        },
+        body2: {
+          lineHeight: 2,
+        },
       },
     },
     MuiAppBar: {
