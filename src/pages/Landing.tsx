@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useState } from "react";
 import {
   Box,
   Toolbar,
@@ -65,6 +65,10 @@ const CodeTribeIcon = createSvgIcon(
 const ButtonAppBar = () => {};
 
 const Landing: FC<any> = () => {
+  const [activeEmbed, setActiveEmbed] = useState(
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d114997.20989146426!2d28.197091369370757!3d-25.748662148943744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e9560451d408f9d%3A0xb180e978338dcefd!2smLab%20Southern%20Africa!5e0!3m2!1sen!2sza!4v1620139798484!5m2!1sen!2sza"
+  );
+  const [locationIndex, setLocationIndex] = useState(0);
   const frameworks = [
     {
       title: "Ionic",
@@ -143,6 +147,18 @@ const Landing: FC<any> = () => {
         "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3499.125139080748!2d24.732460215084554!3d-28.715805982385096!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e9b1b9d748ff481%3A0xe2e2e913dbcc1c73!2sGaleshewe%20SMME%20Village!5e0!3m2!1sen!2sza!4v1621582875915!5m2!1sen!2sza",
     },
   ];
+  useEffect(() => {
+    setTimeout(() => {
+      const locationsEl = document.querySelectorAll(".locations");
+      for (let i = 0; i < locationsEl.length; i++) {
+        const element = locationsEl[i];
+        element.addEventListener("mouseover", (event) => {
+          setActiveEmbed(locations[i].embed);
+          setLocationIndex(i);
+        });
+      }
+    }, 1000);
+  }, []);
   return (
     <Box>
       <Appbar />
@@ -601,7 +617,7 @@ const Landing: FC<any> = () => {
             <Typography textAlign={"center"} variant="h6">
               Send us a message
             </Typography>
-            <form name="contact" netlify>
+            <form name="Codetribe Contact" method="POST" data-netlify="true">
               <Stack flex={1} spacing={2}>
                 <TextField
                   name="email"
@@ -648,7 +664,7 @@ const Landing: FC<any> = () => {
                 <iframe
                   title="location-map"
                   className="landingMap"
-                  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14588.935269198646!2d29.4577354!3d-23.9167731!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xef213f659d800228!2smLab%20Limpopo!5e0!3m2!1sen!2sza!4v1620139900698!5m2!1sen!2sza"
+                  src={activeEmbed}
                   width="100%"
                   height="100%"
                   loading="lazy"
@@ -663,35 +679,22 @@ const Landing: FC<any> = () => {
                   gap: 2,
                 }}
               >
-                {locations.map((item) => {})}
-                <Box>
-                  <Typography variant="h6">Limpopo</Typography>
-                  <Typography variant="caption">
-                    mLab Limpopo is a proud partnership between mLab, Limpopo
-                    Connexion and The Department of Science and Innovation.
-                  </Typography>
-                </Box>
-                <Box>
-                  <Typography variant="h6">Gauteng</Typography>
-                  <Typography variant="caption">
-                    mLab Tshwane is a proud partnership between mLab, The
-                    Innovation Hub and The Department of Science and Innovation
-                    and represents the first mLab launched in South Africa in
-                    2012 through the support of the current partners and the
-                    CSIR, the World Bank and the Finnish Ministry of Foreign
-                    Affairs.
-                  </Typography>
-                </Box>
-                <Box>
-                  <Typography variant="h6">Nothern Cape</Typography>
-                  <Typography variant="caption">
-                    mLab Northern Cape is a proud partnership between mLab, the
-                    Northern Cape Department of Economic Development and
-                    Tourism, Sol Plaatje Municipality, Northern Cape Community
-                    Education College, and The Department of Science and
-                    Innovation.
-                  </Typography>
-                </Box>
+                {locations.map((item, i) => {
+                  return (
+                    <Box
+                      sx={{ cursor: "pointer" }}
+                      key={i}
+                      className={"locations"}
+                    >
+                      <Box>
+                        <Typography variant={locationIndex === i ? "h5" : "h6"}>
+                          {item.title}
+                        </Typography>{" "}
+                      </Box>
+                      <Typography variant="caption">{item.text}</Typography>
+                    </Box>
+                  );
+                })}
               </Box>
             </Box>
           </Stack>
