@@ -19,6 +19,7 @@ import {
   Grid,
   Divider,
   TextField,
+  Snackbar,
 } from "@mui/material";
 import { createSvgIcon } from "@mui/material/utils";
 import AdbIcon from "@mui/icons-material/Adb";
@@ -32,6 +33,15 @@ import FrameworkCard, { Types } from "../components/FrameworkCard";
 import CommentsCard from "../components/CommentsCard";
 import WalloffameCard from "../components/WalloffameCard";
 import Appbar from "../components/Appbar";
+import {
+  getFirestore,
+  collection,
+  setDoc,
+  doc,
+  Timestamp,
+} from "firebase/firestore/lite";
+import { Formik } from "formik";
+import { app } from ".";
 const CodeTribeIcon = createSvgIcon(
   <svg
     width="685"
@@ -62,7 +72,146 @@ const CodeTribeIcon = createSvgIcon(
   "Home"
 );
 
-const ButtonAppBar = () => {};
+const Form = () => {
+  const [sentEmail, setSentEmail] = useState(false);
+  const [sentStatus, setSentStatus] = useState("");
+  const db = getFirestore(app);
+  const emailCol = collection(db, "emails");
+
+  return (
+    <Formik
+      initialValues={{ email: "", subject: "", message: "" }}
+      validate={(values) => {
+        const errors = {
+          email: "",
+          subject: "",
+          message: "",
+        };
+        if (!values.email) {
+          errors.email = "Required";
+        } else if (
+          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+        ) {
+          errors.email = "Invalid email address";
+        }
+        return errors;
+      }}
+      onSubmit={(values, { setSubmitting }) => {
+        // setTimeout(() => {
+        //   console.log(values);
+        //   setSubmitting(false);
+        // }, 400);
+      }}
+    >
+      {({
+        values,
+        errors,
+        touched,
+        handleChange,
+        handleBlur,
+        handleSubmit,
+        isSubmitting,
+      }) => (
+        <form
+          id="form"
+          // name="Codetribe Contact"
+          // data-netlify="true"
+          onSubmit={(e) => {
+            e.preventDefault();
+            const email = {
+              to: "keketso@mlab.co.za",
+              email: "",
+              subject: "",
+              message: "",
+              timeStamp: new Date(),
+            };
+            const formData = new FormData(e.target);
+            for (const pair of formData.entries()) {
+              // console.log(`${pair[0]}, ${pair[1]}`);
+              email[pair[0]] = pair[1];
+            }
+            const emailDoc = doc(collection(db, "emails"));
+            setDoc(emailDoc, email)
+              .then(() => {
+                setSentStatus("Email sent.");
+                setSentEmail(true);
+                setTimeout(() => {
+                  setSentEmail(false);
+                  location.reload()
+                }, 3000);
+              })
+              .catch((err) => {
+                setSentStatus("Error sending email please try again.");
+                setSentEmail(true);
+              });
+          }}
+        >
+          <Snackbar
+            open={sentEmail}
+            autoHideDuration={3000}
+            message={"Message Sent"}
+          />
+          <Stack flex={1} spacing={5}>
+            <Stack flex={1}>
+              <TextField
+                name="email"
+                type="email"
+                id="outlined-basic"
+                label="Email"
+                variant="outlined"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.email}
+              />
+              {errors.email && touched.email && errors.email && (
+                <Box px={2}>
+                  <Typography color={"tomato"} variant="caption">
+                    {errors.email}
+                  </Typography>
+                </Box>
+              )}
+            </Stack>
+            <Stack>
+              <TextField
+                name="subject"
+                id="outlined-basic"
+                label="Subject"
+                variant="outlined"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.subject}
+              />
+              {errors.subject && touched.subject && errors.subject && (
+                <Box px={2}>
+                  <Typography color={"tomato"} variant="caption">
+                    {errors.subject}
+                  </Typography>
+                </Box>
+              )}
+            </Stack>
+            <Stack>
+              <TextField
+                name="message"
+                multiline
+                rows={4}
+                id="outlined-basic"
+                label="Message"
+                variant="outlined"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.message}
+              />
+            </Stack>
+
+            <Button disabled={isSubmitting} type="submit">
+              Send
+            </Button>
+          </Stack>
+        </form>
+      )}
+    </Formik>
+  );
+};
 
 const Landing: FC<any> = () => {
   const [activeEmbed, setActiveEmbed] = useState(
@@ -617,32 +766,7 @@ const Landing: FC<any> = () => {
             <Typography textAlign={"center"} variant="h6">
               Send us a message
             </Typography>
-            <form name="Codetribe Contact" method="POST" data-netlify="true">
-              <Stack flex={1} spacing={2}>
-                <TextField
-                  name="email"
-                  id="outlined-basic"
-                  label="Email"
-                  variant="outlined"
-                />
-                <TextField
-                  name="subject"
-                  id="outlined-basic"
-                  label="Subject"
-                  variant="outlined"
-                />
-                <TextField
-                  name="message"
-                  multiline
-                  maxRows={8}
-                  rows={4}
-                  id="outlined-basic"
-                  label="Message"
-                  variant="outlined"
-                />
-                <Button type="submit">Send 💖</Button>
-              </Stack>
-            </form>
+            <Form />
           </Stack>
           <Stack flex={1}>
             <Box

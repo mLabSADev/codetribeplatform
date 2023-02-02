@@ -1,12 +1,15 @@
 import * as React from "react";
+import { initializeApp } from "firebase/app";
+
 import "./globalScss.scss";
 import "@fontsource/plus-jakarta-sans";
 import type { HeadFC, PageProps } from "gatsby";
 import { Box, Container } from "@mui/material";
 import Landing from "./Landing";
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
-
 import { theme } from "../components/Theme";
+import { firebaseConfig } from "../fb-config";
+export const app = initializeApp(firebaseConfig);
 const IndexPage: React.FC<PageProps> = () => {
   return (
     <Box
