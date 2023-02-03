@@ -4,9 +4,9 @@ export const theme = createTheme({
   palette: {
     mode: "light",
     primary: {
-      light: "#757ce8",
-      main: "#3f50b5",
-      dark: "#002884",
+      light: "#8ACD03",
+      main: "#8ACD03",
+      dark: "#2E4401",
       contrastText: "#fff",
     },
     secondary: {
@@ -41,13 +41,7 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           borderRadius: 20,
-          color: "white",
           boxShadow: "none",
-          backgroundColor: green[700],
-          "&:hover": {
-            backgroundColor: green[500],
-            color: "white",
-          },
         },
       },
     },

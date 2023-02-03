@@ -28,11 +28,13 @@ import { green, grey, blueGrey, blue } from "@mui/material/colors";
 
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
+import MapIcon from "@mui/icons-material/Map";
 import WebinarCard from "../components/WebinarCard";
 import FrameworkCard, { Types } from "../components/FrameworkCard";
 import CommentsCard from "../components/CommentsCard";
 import WalloffameCard from "../components/WalloffameCard";
 import Appbar from "../components/Appbar";
+import * as Yup from "yup";
 import {
   getFirestore,
   collection,
@@ -77,32 +79,20 @@ const Form = () => {
   const [sentStatus, setSentStatus] = useState("");
   const db = getFirestore(app);
   const emailCol = collection(db, "emails");
-
+  let initialValues = { email: "", subject: "", message: "" };
+  const ContactSchema = Yup.object().shape({
+    subject: Yup.string()
+      .min(2, "Too Short!")
+      .max(50, "Too Long!")
+      .required("Required"),
+    message: Yup.string()
+      .min(2, "Too Short!")
+      .max(500, "Too Long!")
+      .required("Required"),
+    email: Yup.string().email("Invalid email").required("Required"),
+  });
   return (
-    <Formik
-      initialValues={{ email: "", subject: "", message: "" }}
-      validate={(values) => {
-        const errors = {
-          email: "",
-          subject: "",
-          message: "",
-        };
-        if (!values.email) {
-          errors.email = "Required";
-        } else if (
-          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-        ) {
-          errors.email = "Invalid email address";
-        }
-        return errors;
-      }}
-      onSubmit={(values, { setSubmitting }) => {
-        // setTimeout(() => {
-        //   console.log(values);
-        //   setSubmitting(false);
-        // }, 400);
-      }}
-    >
+    <Formik initialValues={initialValues} validationSchema={ContactSchema}>
       {({
         values,
         errors,
@@ -111,6 +101,7 @@ const Form = () => {
         handleBlur,
         handleSubmit,
         isSubmitting,
+        resetForm,
       }) => (
         <form
           id="form"
@@ -118,26 +109,23 @@ const Form = () => {
           // data-netlify="true"
           onSubmit={(e) => {
             e.preventDefault();
-            const email = {
-              to: "keketso@mlab.co.za",
-              email: "",
-              subject: "",
-              message: "",
-              timeStamp: new Date(),
-            };
+            handleSubmit(e);
+
             const formData = new FormData(e.target);
-            for (const pair of formData.entries()) {
+            let email = { email: "", subject: "", message: "" };
+            for (const pair of formData?.entries()) {
               // console.log(`${pair[0]}, ${pair[1]}`);
               email[pair[0]] = pair[1];
             }
             const emailDoc = doc(collection(db, "emails"));
+
             setDoc(emailDoc, email)
               .then(() => {
                 setSentStatus("Email sent.");
                 setSentEmail(true);
                 setTimeout(() => {
                   setSentEmail(false);
-                  location.reload()
+                  resetForm();
                 }, 3000);
               })
               .catch((err) => {
@@ -155,6 +143,7 @@ const Form = () => {
             <Stack flex={1}>
               <TextField
                 name="email"
+                required
                 type="email"
                 id="outlined-basic"
                 label="Email"
@@ -175,6 +164,7 @@ const Form = () => {
               <TextField
                 name="subject"
                 id="outlined-basic"
+                required
                 label="Subject"
                 variant="outlined"
                 onChange={handleChange}
@@ -193,6 +183,7 @@ const Form = () => {
               <TextField
                 name="message"
                 multiline
+                required
                 rows={4}
                 id="outlined-basic"
                 label="Message"
@@ -296,18 +287,7 @@ const Landing: FC<any> = () => {
         "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3499.125139080748!2d24.732460215084554!3d-28.715805982385096!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e9b1b9d748ff481%3A0xe2e2e913dbcc1c73!2sGaleshewe%20SMME%20Village!5e0!3m2!1sen!2sza!4v1621582875915!5m2!1sen!2sza",
     },
   ];
-  useEffect(() => {
-    setTimeout(() => {
-      const locationsEl = document.querySelectorAll(".locations");
-      for (let i = 0; i < locationsEl.length; i++) {
-        const element = locationsEl[i];
-        element.addEventListener("mouseover", (event) => {
-          setActiveEmbed(locations[i].embed);
-          setLocationIndex(i);
-        });
-      }
-    }, 1000);
-  }, []);
+
   return (
     <Box>
       <Appbar />
@@ -810,11 +790,32 @@ const Landing: FC<any> = () => {
                       key={i}
                       className={"locations"}
                     >
-                      <Box>
-                        <Typography variant={locationIndex === i ? "h5" : "h6"}>
-                          {item.title}
-                        </Typography>{" "}
-                      </Box>
+                      <Stack
+                        direction={"row"}
+                        spacing={2}
+                        alignItems={"center"}
+                      >
+                        <Box flex={2}>
+                          <Typography
+                            variant={locationIndex === i ? "h5" : "h6"}
+                          >
+                            {item.title}
+                          </Typography>
+                        </Box>
+                        <Box>
+                          <Button
+                            onClick={() => {
+                              setActiveEmbed(item.embed);
+                              setLocationIndex(i);
+                            }}
+                            variant={locationIndex === i ? "contained" : "text"}
+                            size="small"
+                            startIcon={<MapIcon />}
+                          >
+                            {locationIndex === i ? "viewing" : "view on map"}
+                          </Button>
+                        </Box>
+                      </Stack>
                       <Typography variant="caption">{item.text}</Typography>
                     </Box>
                   );
