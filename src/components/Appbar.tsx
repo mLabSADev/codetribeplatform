@@ -28,8 +28,8 @@ const Appbar = () => {
     },
     { label: "Our Webinars", link: "#webinars" },
     { label: "Frameworks", link: "#frameworks" },
-    { label: "Join Us", link: "#join" },
-    { label: "Tribers", link: "#tribers" },
+    // { label: "Join Us", link: "#join" },
+    // { label: "Tribers", link: "#tribers" },
     { label: "Contact Us", link: "#contact" },
   ];
 
@@ -174,7 +174,14 @@ const Appbar = () => {
           </Stack>
           {/* login */}
           <Box sx={{ flexGrow: 0 }}>
-            <Button variant="contained">Login</Button>
+            <Button
+              variant="contained"
+              component={"a"}
+              href="https://codetribe.mlab.co.za/"
+              target="_blank"
+            >
+              Login
+            </Button>
             <Menu
               sx={{ mt: "45px" }}
               id="menu-appbar"

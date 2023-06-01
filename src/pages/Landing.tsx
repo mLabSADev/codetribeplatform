@@ -92,7 +92,11 @@ const Form = () => {
     email: Yup.string().email("Invalid email").required("Required"),
   });
   return (
-    <Formik initialValues={initialValues} validationSchema={ContactSchema}>
+    <Formik
+      initialValues={initialValues}
+      validationSchema={ContactSchema}
+      onSubmit={() => {}}
+    >
       {({
         values,
         errors,
@@ -194,7 +198,7 @@ const Form = () => {
               />
             </Stack>
 
-            <Button disabled={isSubmitting} type="submit">
+            <Button variant="outlined" disabled={isSubmitting} type="submit">
               Send
             </Button>
           </Stack>
@@ -212,7 +216,7 @@ const Landing: FC<any> = () => {
   const frameworks = [
     {
       title: "Ionic",
-      icon: "https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/ionic-icon.png",
+      icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Ionic-logo-landscape.svg/1200px-Ionic-logo-landscape.svg.png",
       description:
         "An open source mobile toolkit for building high quality, cross-platform native and web app experiences. Move faster with a single code base, running everywhere with JavaScript and the Web.",
       bgColor:
@@ -262,7 +266,7 @@ const Landing: FC<any> = () => {
       link: "",
     },
     {
-      icon: "https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/ionic-icon.png",
+      icon: "https://styles.redditmedia.com/t5_320ze/styles/communityIcon_qomtlzo996u61.jpg",
       label: "Ionic",
       link: "",
     },
@@ -329,7 +333,15 @@ const Landing: FC<any> = () => {
               We have an amazing team that is willing to train, guide and mentor
               you on your journey.
             </Typography>
-            <Button sx={{ alignSelf: "start", paddingX: 3 }}>Login</Button>
+            <Button
+              variant="contained"
+              component={"a"}
+              href="https://codetribe.mlab.co.za/"
+              target="_blank"
+              sx={{ alignSelf: "start", paddingX: 3 }}
+            >
+              Login
+            </Button>
           </Stack>
         </Stack>
         <Grid
@@ -545,7 +557,7 @@ const Landing: FC<any> = () => {
         </Stack>
       </Container>
       {/* join our tribe */}
-      <Container
+      {/* <Container
         id="join"
         sx={{
           paddingTop: 15,
@@ -587,10 +599,10 @@ const Landing: FC<any> = () => {
             })}
           </Stack>
         </Stack>
-      </Container>
+      </Container> */}
 
       {/* wall of fame */}
-      <Container
+      {/* <Container
         id="tribers"
         sx={{
           paddingTop: 15,
@@ -638,7 +650,7 @@ const Landing: FC<any> = () => {
             })}
           </Stack>
         </Stack>
-      </Container>
+      </Container> */}
       {/* message */}
       <Container
         sx={{
@@ -691,6 +703,9 @@ const Landing: FC<any> = () => {
                     alignSelf: "start",
                     paddingX: 2,
                   }}
+                  component={"a"}
+                  target="_blank"
+                  href="https://www.facebook.com/sharer/sharer.php?u=https://codetribe.mlab.co.za/"
                   // color="secondary"
                   icon={<FacebookIcon />}
                   label="Share on Facebook"
@@ -703,6 +718,9 @@ const Landing: FC<any> = () => {
                     paddingX: 2,
                   }}
                   // color="secondary"
+                  component={"a"}
+                  target="_blank"
+                  href="https://twitter.com/intent/tweet?url=https://codetribe.mlab.co.za/&text=Learn%20how%20to%20build%20Android%20&%20iOS%20Apps"
                   icon={<TwitterIcon />}
                   label="Share on Twitter"
                 />

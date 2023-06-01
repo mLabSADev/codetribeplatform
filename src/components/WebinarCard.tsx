@@ -60,7 +60,13 @@ const WebinarCard: FC<WebinarTypes> = () => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="large" fullWidth>
+        <Button
+          size="large"
+          fullWidth
+          component={"a"}
+          href="https://codetribe.mlab.co.za/"
+          target="_blank"
+        >
           Login to watch
         </Button>
         {/* <Button size="large">Learn More</Button> */}
