@@ -16,7 +16,6 @@ import {
   CardContent,
   CardMedia,
   Chip,
-  Grid,
   Divider,
   TextField,
   Snackbar,
@@ -30,11 +29,18 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import MapIcon from "@mui/icons-material/Map";
 import WebinarCard from "../components/WebinarCard";
+import ImageList from "@mui/material/ImageList";
+import ImageListItem from "@mui/material/ImageListItem";
 import FrameworkCard, { Types } from "../components/FrameworkCard";
 import CommentsCard from "../components/CommentsCard";
 import WalloffameCard from "../components/WalloffameCard";
 import Appbar from "../components/Appbar";
+import SvgIcon from "@mui/material/SvgIcon";
+import { experimentalStyled as styled } from "@mui/material/styles";
+import Paper from "@mui/material/Paper";
+import Grid from "@mui/material/Unstable_Grid2";
 import * as Yup from "yup";
+import { Image } from "antd";
 import {
   getFirestore,
   collection,
@@ -73,6 +79,13 @@ const CodeTribeIcon = createSvgIcon(
   </svg>,
   "Home"
 );
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  ...theme.typography.body2,
+  padding: theme.spacing(2),
+  textAlign: "center",
+  color: theme.palette.text.secondary,
+}));
 
 const Form = () => {
   const [sentEmail, setSentEmail] = useState(false);
@@ -207,7 +220,56 @@ const Form = () => {
     </Formik>
   );
 };
-
+const itemData = [
+  {
+    img: "https://mlab.co.za/static/193c55ed23e7c8680d27b777fdf68f04/b924f/WhatsApp-Image-2022-03-25-at-2.21.58-PM.webp",
+    title: "Breakfast",
+  },
+  {
+    img: "https://live.staticflickr.com/65535/49036525132_af2fbbf7b9_z.jpg",
+    title: "Burger",
+  },
+  {
+    img: "https://mlab.co.za/static/158c83f05ed1c73249b860d48bfe0458/a75c4/news-edit3.png",
+    title: "Camera",
+  },
+  {
+    img: "//live.staticflickr.com/65535/49094538336_5ee03bf1c4_h.jpg",
+    title: "Coffee",
+  },
+  {
+    img: "//live.staticflickr.com/65535/49094455302_ba7c293337_b.jpg",
+    title: "Hats",
+  },
+  {
+    img: "//live.staticflickr.com/65535/49036525197_085694bd69_b.jpg",
+    title: "Honey",
+  },
+  {
+    img: "//live.staticflickr.com/65535/49035805783_91dd4e7e73_b.jpg",
+    title: "Basketball",
+  },
+  {
+    img: "//live.staticflickr.com/65535/49094455442_a59abef48b_c.jpg",
+    title: "Fern",
+  },
+  {
+    img: "//live.staticflickr.com/744/21256278752_19c806265f_b.jpg",
+    title: "Mushrooms",
+  },
+  {
+    img: "https://mlab.co.za/static/938f4530f430eb865074b7066d6e0e26/92101/screenshot-2022-11-04-075322.png",
+    title: "Tomato basil",
+  },
+  {
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRD0PtWPfWfyKlSzzwq5aZIw6bmUxRmehT-fg&usqp=CAU",
+    title: "Sea star",
+  },
+  {
+    img: "https://mlab.co.za/static/045025696f6f7c74cdb92ffeeebf5bae/6a304/nc3.jpg",
+    title: "Bike",
+  },
+];
 const Landing: FC<any> = () => {
   const [activeEmbed, setActiveEmbed] = useState(
     "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d114997.20989146426!2d28.197091369370757!3d-25.748662148943744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e9560451d408f9d%3A0xb180e978338dcefd!2smLab%20Southern%20Africa!5e0!3m2!1sen!2sza!4v1620139798484!5m2!1sen!2sza"
@@ -237,6 +299,22 @@ const Landing: FC<any> = () => {
         "React is a free and open-source front-end JavaScript library for building user interfaces based on UI components. It is maintained by Meta and a community of individual developers and companies. React can be used as a base in the development of single-page or mobile applications.",
       bgColor:
         "linear-gradient(120deg, rgba(16,213,233,1) 0%, rgba(16,134,221,1) 100%)",
+    },
+    {
+      title: "Node JS",
+      icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/2560px-Node.js_logo.svg.png",
+      description:
+        "As an asynchronous event-driven JavaScript runtime, Node.js is designed to build scalable network applications. In the following 'hello world' example, many connections can be handled concurrently. Upon each connection, the callback is fired, but if there is no work to be done, Node.js will sleep.",
+      bgColor:
+        "linear-gradient(120deg, rgba(37, 136, 69,1) 0%, rgba(78, 189, 86,1) 100%)",
+    },
+    {
+      title: "React Native",
+      icon: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png",
+      description:
+        "React Native is an open-source UI software framework created by Meta Platforms, Inc. It is used to develop applications for Android, Android TV, iOS, macOS, tvOS, Web, Windows and UWP by enabling developers to use the React framework along with native platform capabilities. ",
+      bgColor:
+        "linear-gradient(120deg, rgba(66, 216, 248,1) 0%, rgba(16,134,221,1) 100%)",
     },
   ];
   const technologies = [
@@ -430,9 +508,28 @@ const Landing: FC<any> = () => {
             and mLab.
           </Typography>
         </Stack>
+        <Stack py={5}>
+          <ImageList sx={{ width: "100%" }} cols={3}>
+            {itemData.map((item) => (
+              <ImageListItem key={item.img}>
+                <Image
+                  style={{
+                    maxHeight: 200,
+                    minHeight: 200,
+                    objectFit: "cover",
+                  }}
+                  src={`${item.img}?`}
+                  // srcSet={`${item.img}?fit=cover&auto=format`}
+                  alt={item.title}
+                  loading="lazy"
+                />
+              </ImageListItem>
+            ))}
+          </ImageList>
+        </Stack>
       </Container>
       {/* webinar */}
-      <Container
+      {/* <Container
         id="webinars"
         sx={{
           paddingTop: 15,
@@ -501,7 +598,7 @@ const Landing: FC<any> = () => {
             })}
           </Stack>
         </Stack>
-      </Container>
+      </Container> */}
       {/* frameworks */}
       <Container
         id="frameworks"
@@ -538,13 +635,13 @@ const Landing: FC<any> = () => {
             in a FREE 60-minute mlab webinar.
           </Typography>
         </Stack>
-        <Stack
-          justifyContent={"space-evenly"}
-          direction={{ xs: "column", md: "row" }}
-          spacing={1}
+        <Grid
+          container
+          spacing={{ xs: 2, md: 3 }}
+          columns={{ xs: 4, sm: 8, md: 12 }}
         >
-          {frameworks.map((item: Types, i: number) => {
-            return (
+          {frameworks.map((item: Types, i: number) => (
+            <Grid xs={9} sm={4} md={4} key={i}>
               <FrameworkCard
                 key={i}
                 title={item.title}
@@ -552,8 +649,19 @@ const Landing: FC<any> = () => {
                 description={item.description}
                 bgColor={item.bgColor}
               />
+            </Grid>
+          ))}
+        </Grid>
+        <Stack
+          justifyContent={"space-evenly"}
+          direction={{ xs: "column", md: "row" }}
+          spacing={1}
+        >
+          {/* {frameworks.map((item: Types, i: number) => {
+            return (
+              
             );
-          })}
+          })} */}
         </Stack>
       </Container>
       {/* join our tribe */}
@@ -721,7 +829,21 @@ const Landing: FC<any> = () => {
                   component={"a"}
                   target="_blank"
                   href="https://twitter.com/intent/tweet?url=https://codetribe.mlab.co.za/&text=Learn%20how%20to%20build%20Android%20&%20iOS%20Apps"
-                  icon={<TwitterIcon />}
+                  icon={
+                    <SvgIcon>
+                      {/* credit: plus icon from https://heroicons.com/ */}
+                      <svg
+                        viewBox="0 0 24 24"
+                        aria-label="Twitter"
+                        role="img"
+                        class="r-1nao33i r-4qtqp9 r-yyyyoo r-16y2uox r-lwhw9o r-dnmrzs r-bnwqim r-1plcrui r-lrvibr"
+                      >
+                        <g>
+                          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+                        </g>
+                      </svg>
+                    </SvgIcon>
+                  }
                   label="Share on Twitter"
                 />
               </Box>

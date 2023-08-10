@@ -1,0 +1,23 @@
+{
+  "select": {
+    "fields": [
+      {
+        "fieldPath": "subject"
+      }
+    ]
+  },
+  "from": [
+    {
+      "collectionId": "emails",
+      "allDescendants": true
+    }
+  ],
+  "orderBy": [
+    {
+      "field": {
+        "fieldPath": "subject"
+      },
+      "direction": "ASCENDING"
+    }
+  ]
+}
