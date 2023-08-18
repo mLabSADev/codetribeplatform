@@ -371,7 +371,7 @@ const Landing: FC<any> = () => {
   ];
 
   return (
-    <Box>
+    <Box sx={{ overflowX: "hidden" }}>
       <Appbar />
       {/* landing */}
       <Stack
@@ -433,7 +433,7 @@ const Landing: FC<any> = () => {
         >
           {technologies.map((item: TechTypes, i) => {
             return (
-              <Grid item={true}>
+              <Grid>
                 <Tooltip title={item.label}>
                   <Stack
                     padding={2}
@@ -802,7 +802,7 @@ const Landing: FC<any> = () => {
             <Stack
               alignItems={"center"}
               justifyContent={"center"}
-              direction={"row"}
+              direction={{ xs: "column", sm: "column", md: "row" }}
               spacing={2}
             >
               <Box>
