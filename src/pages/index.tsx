@@ -22,7 +22,7 @@ const IndexPage: React.FC<PageProps> = () => {
       }}
     >
       <ThemeProvider theme={theme}>
-        <Landing></Landing>
+        <Landing></Landing> 
       </ThemeProvider>
     </Box>
   );
