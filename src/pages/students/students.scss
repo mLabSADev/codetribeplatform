@@ -1,0 +1,33 @@
+.ribbon-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #3498db; /* Set your desired background color */
+  color: #fff; /* Set your desired text color */
+  padding: 10px; /* Adjust padding according to your preference */
+  white-space: nowrap; /* Prevent text from wrapping */
+  /* Hide overflow text */
+  text-overflow: ellipsis; /* Display ellipsis (...) for overflow text */
+}
+
+.ribbon-container::before,
+.ribbon-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  border-style: solid;
+  border-color: transparent;
+}
+
+.ribbon-container::before {
+  left: 0;
+  border-width: 30px 0 30px 30px; /* Adjust the values to change the angle and size */
+  border-right-color: #3498db; /* Match the container's background color */
+}
+
+.ribbon-container::after {
+  right: 0;
+  border-width: 30px 30px 30px 0; /* Adjust the values to change the angle and size */
+  border-left-color: #3498db; /* Match the container's background color */
+}

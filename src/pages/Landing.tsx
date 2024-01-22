@@ -447,6 +447,7 @@ const Landing: FC<any> = () => {
                       src={item.icon}
                       alt={item.label}
                     />
+              
                     <Typography>{item.label}</Typography>
                   </Stack>
                 </Tooltip>
