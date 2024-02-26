@@ -417,6 +417,7 @@ const Landing: FC<any> = () => {
                 Applications Open
               </Button>
               <Button
+                variant="outlined"
                 component={"a"}
                 href="https://codetribe.mlab.co.za/"
                 target="_blank"

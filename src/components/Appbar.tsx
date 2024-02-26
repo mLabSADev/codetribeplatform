@@ -125,9 +125,7 @@ const Appbar = () => {
               mr: 2,
               display: { sm: "flex", lg: "none" },
               flexGrow: 1,
-              //   fontFamily: "monospace",
               fontWeight: 700,
-              //   letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
             }}
@@ -139,7 +137,6 @@ const Appbar = () => {
           <Stack
             direction={"row"}
             spacing={2}
-            // alignItems={"start"}
             sx={{
               flexGrow: 1,
               display: { xs: "none", sm: "none", md: "none", lg: "flex" },
@@ -173,9 +170,16 @@ const Appbar = () => {
             ))}
           </Stack>
           {/* login */}
-          <Box sx={{ flexGrow: 0 }}>
+          <Stack direction={"row"} sx={{ flexGrow: 0, gap: 2 }}>
             <Button
               variant="contained"
+              component="a"
+              href="#apply"
+            >
+              Register for CodeTribe
+            </Button>
+            <Button
+              variant="outlined"
               component={"a"}
               href="https://codetribe.mlab.co.za/"
               target="_blank"
@@ -204,7 +208,7 @@ const Appbar = () => {
                 </MenuItem>
               ))}
             </Menu>
-          </Box>
+          </Stack>
         </Toolbar>
       </Container>
     </AppBar>
