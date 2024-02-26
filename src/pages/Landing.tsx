@@ -275,6 +275,7 @@ const Landing: FC<any> = () => {
     "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d114997.20989146426!2d28.197091369370757!3d-25.748662148943744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e9560451d408f9d%3A0xb180e978338dcefd!2smLab%20Southern%20Africa!5e0!3m2!1sen!2sza!4v1620139798484!5m2!1sen!2sza"
   );
   const [locationIndex, setLocationIndex] = useState(0);
+
   const frameworks = [
     {
       title: "Ionic",
@@ -411,15 +412,19 @@ const Landing: FC<any> = () => {
               We have an amazing team that is willing to train, guide and mentor
               you on your journey.
             </Typography>
-            <Button
-              variant="contained"
-              component={"a"}
-              href="https://codetribe.mlab.co.za/"
-              target="_blank"
-              sx={{ alignSelf: "start", paddingX: 3 }}
-            >
-              Login
-            </Button>
+            <Stack direction={"row"} gap={2}>
+              <Button href="#apply" variant="contained">
+                Applications Open
+              </Button>
+              <Button
+                component={"a"}
+                href="https://codetribe.mlab.co.za/"
+                target="_blank"
+                sx={{ alignSelf: "start", paddingX: 3 }}
+              >
+                Login
+              </Button>
+            </Stack>
           </Stack>
         </Stack>
         <Grid
@@ -447,7 +452,7 @@ const Landing: FC<any> = () => {
                       src={item.icon}
                       alt={item.label}
                     />
-              
+
                     <Typography>{item.label}</Typography>
                   </Stack>
                 </Tooltip>
@@ -529,6 +534,7 @@ const Landing: FC<any> = () => {
           </ImageList>
         </Stack>
       </Container>
+
       {/* webinar */}
       {/* <Container
         id="webinars"
@@ -665,6 +671,83 @@ const Landing: FC<any> = () => {
           })} */}
         </Stack>
       </Container>
+      {/* Applications */}
+      <div id="apply">
+        <Container>
+          <Stack
+            flex={1}
+            direction={"row"}
+            position={"relative"}
+            borderRadius={2}
+            overflow={"hidden"}
+            sx={{ border: "solid 1px #F0ECF3" }}
+          >
+            <Stack
+              sx={
+                {
+                  // display: { xs: "none", sm: "none", md: "block", lg: "block" },
+                }
+              }
+              flex={1}
+              position={"absolute"}
+              top={0}
+              left={0}
+              right={0}
+              bottom={0}
+            >
+              <video
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                muted
+                autoPlay
+                loop
+              >
+                <source
+                  src="https://firebasestorage.googleapis.com/v0/b/mlab-22bb9.appspot.com/o/codetribe-applications.mp4?alt=media&token=8e1416c2-db69-4910-9158-ca5c4ed1f147"
+                  type="video/mp4"
+                />
+                Your browser does not support the video tag.
+              </video>
+            </Stack>
+            <Stack
+              py={15}
+              px={5}
+              gap={4}
+              zIndex={10}
+              sx={{
+                background: {
+                  xs: "rgba(255,255,255,0.9)",
+                  sm: "rgba(255,255,255,0.6)",
+                  md: "linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%)",
+                  lg: "rgba(255,255,255,0)",
+                },
+              }}
+              flex={1}
+            >
+              <Stack gap={2}>
+                <Typography variant="h3" fontWeight={"bold"}>
+                  Applications Open
+                </Typography>
+                <Typography variant="body1">
+                  Register for CodeTribe 2024
+                </Typography>
+              </Stack>
+              <Stack direction={"row"} flex={1}>
+                <Stack flex={1}>
+                  <Button
+                    variant="contained"
+                    component="a"
+                    href="https://forms.gle/2jdWizDrsYvC5PeJ9"
+                    target="_blank"
+                  >
+                    Register Now
+                  </Button>
+                </Stack>
+                <Stack flex={1}></Stack>
+              </Stack>
+            </Stack>
+          </Stack>
+        </Container>
+      </div>
       {/* join our tribe */}
       {/* <Container
         id="join"

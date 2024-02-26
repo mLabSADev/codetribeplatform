@@ -519,8 +519,9 @@ const Student = ({ params }: any) => {
             sx={{
               backdropFilter: "blur(35px)",
               background: "rgba(255,255,255,0.8)",
+              overflowY: "auto",
             }}
-            position={"absolute"}
+            position={"fixed"}
             zIndex={999}
             top={0}
             left={0}
@@ -529,10 +530,11 @@ const Student = ({ params }: any) => {
           >
             <Box
               sx={{
-                position: "absolute",
+                position: "fixed",
                 top: 0,
                 left: 0,
                 width: { xs: 150, sm: 300, md: 400, lg: 500 },
+                zIndex: 5,
               }}
             >
               <StaticImage
@@ -544,10 +546,11 @@ const Student = ({ params }: any) => {
             </Box>
             <Box
               sx={{
-                position: "absolute",
+                position: "fixed",
                 bottom: 0,
                 right: 0,
-                width: { xs: 240, sm: 300, md: 400, lg: 400 },
+                width: { xs: 150, sm: 300, md: 400, lg: 400 },
+                zIndex: 5,
               }}
             >
               <StaticImage
@@ -561,8 +564,8 @@ const Student = ({ params }: any) => {
               <Stack
                 flex={1}
                 height={"100vh"}
-                sx={{ overflowY: "auto" }}
-                alignItems={"center"}
+                position={"relative"}
+                zIndex={100}
               >
                 <Stack flex={1}></Stack>
                 <Stack textAlign={"center"}>
@@ -604,7 +607,7 @@ const Student = ({ params }: any) => {
                       />
                       <Typography variant="overline">Program</Typography>
                     </Stack>
-                    <Typography>
+                    <Typography variant="body2">
                       This program, conducted by mLab, is aimed at nurturing and
                       developing digital skills in programming. Throughout the
                       duration of the CodeTribe Program,{" "}
@@ -613,7 +616,7 @@ const Student = ({ params }: any) => {
                       of proficiency in various programming frameworks,
                       including ReactJs, Firebase, and more.
                     </Typography>
-                    <Typography variant="body2">
+                    <Typography variant="body2" color={"gray"}>
                       We hereby acknowledge {students[id].firstName}{" "}
                       {students[id].lastName}'s commitment to learning and
                       actively engaging in the program's activities,
