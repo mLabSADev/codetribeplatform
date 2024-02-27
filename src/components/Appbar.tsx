@@ -171,12 +171,8 @@ const Appbar = () => {
           </Stack>
           {/* login */}
           <Stack direction={"row"} sx={{ flexGrow: 0, gap: 2 }}>
-            <Button
-              variant="contained"
-              component="a"
-              href="#apply"
-            >
-              Register for CodeTribe
+            <Button variant="contained" component="a" href="#apply">
+              CodeTribe Bootcamp
             </Button>
             <Button
               variant="outlined"

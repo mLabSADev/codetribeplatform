@@ -414,7 +414,7 @@ const Landing: FC<any> = () => {
             </Typography>
             <Stack direction={"row"} gap={2}>
               <Button href="#apply" variant="contained">
-                Applications Open
+                Register for Bootcamp
               </Button>
               <Button
                 variant="outlined"
@@ -729,7 +729,7 @@ const Landing: FC<any> = () => {
                   Applications Open
                 </Typography>
                 <Typography variant="body1">
-                  Register for CodeTribe 2024
+                  Register for CodeTribe 2024 Bootcamp
                 </Typography>
               </Stack>
               <Stack direction={"row"} flex={1}>
@@ -740,7 +740,7 @@ const Landing: FC<any> = () => {
                     href="https://forms.gle/2jdWizDrsYvC5PeJ9"
                     target="_blank"
                   >
-                    Register Now
+                    Register for Bootcamp
                   </Button>
                 </Stack>
                 <Stack flex={1}></Stack>
